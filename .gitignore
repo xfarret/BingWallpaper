@@ -5,3 +5,4 @@ dist
 galery
 config.yml
 lock
+**/__pycache__
