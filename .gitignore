@@ -1,0 +1,7 @@
+.idea
+build
+dist
+.eggs
+galery
+config.yml
+lock
