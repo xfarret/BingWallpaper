@@ -21,6 +21,15 @@ class Utils:
         return Utils.simple_datetime(now.year, now.month, now.day)
 
     @staticmethod
+    def current_datetime(date_separator='', time_sperator=':'):
+        now = datetime.datetime.now()
+        return {
+            'datetime': datetime.datetime(now.year, now.month, now.day, now.hour, now.minute, now.second, 0),
+            'str': str(now.year) + date_separator + str(now.month) + date_separator + str(now.day) + ' ' +
+                   str(now.hour) + time_sperator + str(now.minute) + time_sperator + str(now.second)
+        }
+
+    @staticmethod
     def date_info(date_string):
         year = date_string[0:4]
         month = date_string[4:6]
@@ -59,10 +68,10 @@ class Utils:
         current_date = datetime.date(date_info['year'], date_info['month'], date_info['day'])
         day_before = current_date - datetime.timedelta(days=1)
         return {
-           'year': day_before.year,
-           'month': day_before.month,
-           'day': day_before.day,
-           'str': str(day_before.year) + separator + str(day_before.month) + separator + str(day_before.day)
+            'year': day_before.year,
+            'month': day_before.month,
+            'day': day_before.day,
+            'str': str(day_before.year) + separator + str(day_before.month) + separator + str(day_before.day)
         }
 
     @staticmethod
@@ -86,8 +95,8 @@ class Utils:
             end tell
             END"""
             try:
-                subprocess.Popen(SCRIPT%file_path, shell=True)
-            #try:
+                subprocess.Popen(SCRIPT % file_path, shell=True)
+            # try:
             #    app('Finder').desktop_picture.set(mactypes.File(file_path))
             except appscript.reference.CommandError as error:
                 Utils.save_error_file(error)
@@ -104,8 +113,15 @@ class Utils:
         lines.append("------------" + "\n")
 
         home = Utils.get_home_path()
-        f = open(home + "error", "a")
+        f = open(home + "bing.error.log", "a")
         f.writelines(lines)
+        f.close()
+
+    @staticmethod
+    def add_log(str_info):
+        home = Utils.get_home_path()
+        f = open(home + "bing.log", "a")
+        f.writelines(str_info + "\n")
         f.close()
 
     @staticmethod

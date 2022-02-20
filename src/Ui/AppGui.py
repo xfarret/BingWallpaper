@@ -183,6 +183,23 @@ class AppGui:
         :param events:
         :return:
         """
+        event_name = "Undefined"
+        if events.code == EVENT_JOB_ADDED:
+            event_name = "Event Job Added"
+        if events.code == EVENT_JOB_REMOVED:
+            event_name = "Event Job Removed"
+        if events.code == EVENT_JOB_MODIFIED:
+            event_name = "Event Job Modified"
+        if events.code == EVENT_JOB_EXECUTED:
+            event_name = "Event Job Executed"
+        if events.code == EVENT_JOB_ERROR:
+            event_name = "Event Job Error"
+        if events.code == EVENT_JOB_MISSED:
+            event_name = "Event Job Missed"
+        if events.code == EVENT_JOB_SUBMITTED:
+            event_name = "Event Job Submited"
+
+        Utils.add_log("Event fired : " + event_name + ", date : " + Utils.current_datetime('-', ':')['str'])
         if events.code == EVENT_JOB_MISSED:
             self.gui_event_scheduler()
 
