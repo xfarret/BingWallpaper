@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-import time
 import argparse
-import appscript
+import time
 
 from Bing import Bing
 from Ui.AppGui import AppGui
